@@ -1,17 +1,12 @@
-
-import { StatusBar } from "expo-status-bar";
-
-import { NavigationContainer, StackActions } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NavBar from "./Navigation/MainContainer"
-
+import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 //screens
-import Login from './Navigation/Screens/LoginScreen'
-import CheckIn from './Navigation/Screens/CheckInScreen'
-import StudentScreen from './Navigation/Screens/StudentsScreen'
+import Login from './Screens/LoginScreen'
+import CheckIn from './Screens/CheckInScreen'
+import StudentScreen from './Screens/StudentsScreen'
 
 //screen names
 const loginName = 'Login'
@@ -19,17 +14,10 @@ const checkInName = 'Check In'
 const studentsName = 'Students'
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
-let isSignedIn = false
-
-export default function App() {
-  
-
-  return (
-    
-   (
-    <NavigationContainer>
+const NavBar = () => {
+    return(
+        <NavigationContainer>
             <Tab.Navigator 
             initialRouteName={Login}
             screenOptions={({route}) => ({
@@ -47,14 +35,12 @@ export default function App() {
                 }
             })}
             >
-                <Tab.Screen name={loginName} component={Login} />
                 <Tab.Screen name={studentsName} component={StudentScreen} />
                 <Tab.Screen name={checkInName} component={CheckIn} />
             </Tab.Navigator>
         </NavigationContainer>
-     ) 
-   
-  );
+    )
+
 }
 
-
+export default NavBar
